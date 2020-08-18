@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import "../register/style.css";
+import {Link} from "react-router-dom";
 
 
 function SignIn(props) {
+const [message,setMessage]=useState("");
 
     const handleLogIn = e => {
+        e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
 
@@ -18,7 +21,14 @@ function SignIn(props) {
         })
             .then((res) => res.json())
             .then(data=>{
-                console.log(data);
+                if(data.message){
+                    setMessage(data.message);
+                }
+                else {
+                    console.log(data)
+                    
+                    localStorage.setItem("user",JSON.stringify(data));
+                }
             })
             
     }
@@ -35,8 +45,8 @@ function SignIn(props) {
                             <input type="Password" className="input"  name="password" placeholder="Password" />
                             <input type="submit" className="Button"  value="Log In" name="ok"></input>
                         </form>
-
-                        <p className="extraOption">No Account? Sign up here</p>
+                        {message && <p className="response">{message}</p>}
+                        <p className="extraOption">No Account? <Link to="/SignUp"> Sign up here</Link> </p>
 
 
                     </div>
