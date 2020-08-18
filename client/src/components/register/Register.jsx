@@ -1,8 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './style.css';
+import { Link } from 'react-router-dom';
+
 
 function Register() {
-
+    const [message,setMessage]=useState("");
     const registerUser = e => {
         e.preventDefault();
         let email = e.target.email.value;
@@ -21,9 +23,9 @@ function Register() {
         }).then(res => res.json())
             .then(data => {
               if(data.successful === true){
-                    document.getElementById("response").innerText="you have been register successfuly"
+                   setMessage("register completed successfuly!");
               }else{
-                document.getElementById("response").innerText="user exist try another userEmail" 
+                setMessage("Email already exists, try another" )
               }
             })
     };
@@ -33,13 +35,14 @@ function Register() {
             <h1 className='title'>Register</h1>
             <form className="inputs" onSubmit={registerUser}>
                 <input type="text" name="email" placeholder="email" className="input"/><br></br>
-                <input type="text" name="firstName" placeholder="name" className="input"/><br></br>
-                <input type="text" name="lastName" placeholder="name" className="input"/><br></br>
-                <input type="text" name="picUrl" placeholder="pic Url" className="input"/><br></br>
+                <input type="text" name="firstName" placeholder="First Name" className="input"/><br></br>
+                <input type="text" name="lastName" placeholder="Last Name" className="input"/><br></br>
+                <input type="text" name="picUrl" placeholder="Personal img Url" className="input"/><br></br>
                 <input type="text" name="password" placeholder="password" className="input"/><br></br>
-                <input type="submit" className="Button" />            
+                <input type="submit" className="Button" />
+                <p className="extraOption">Already have an account <Link to="/"> Sign In </Link></p>            
             </form>
-            <div id="response">jgigi</div>
+           {message && <div className="response">{message}</div>}
         </div>
         </div>
     )
