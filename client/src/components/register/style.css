@@ -14,8 +14,9 @@
     margin:auto;
     border-radius: 15px;
     width: 40vw;
-    height: 40vh;
+    height: fit-content;
     background-color: whitesmoke;
+    padding: 10px;
 }
 .inputs{
     display: flex;
@@ -23,6 +24,7 @@
     align-items: center;
 }
 .input{
+    border-radius: 8px;
     padding: 5px;
     margin-top: 2%;
     width:50%;
@@ -30,6 +32,7 @@
 
 }
 .Button{
+    border-radius: 8px;
     padding: 10px;
     margin-top: 2%; 
 }
@@ -39,4 +42,8 @@
 .extraOption{
     margin-top: 10px;
     color: steelblue;
+}
+#response{
+    color: red;
+    font-size: 18px;
 }
