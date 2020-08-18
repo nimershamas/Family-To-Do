@@ -43,7 +43,7 @@ const [message,setMessage]=useState("");
                             <input type="email" className="input"   name="email" placeholder="Email" />
 
                             <input type="Password" className="input"  name="password" placeholder="Password" />
-                            <input type="submit" className="Button"  value="Log In" name="ok"></input>
+                           <Link to="/MainPage"><input type="submit" className="Button"  value="Log In" name="ok"></input></Link> 
                         </form>
                         {message && <p className="response">{message}</p>}
                         <p className="extraOption">No Account? <Link to="/SignUp"> Sign up here</Link> </p>

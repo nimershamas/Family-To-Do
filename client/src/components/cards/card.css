@@ -1,0 +1,45 @@
+/* .mainWrapper{
+    display: grid;
+    grid-template-rows:20vh auto ;
+    grid-template-columns: 20vw 60vw 20vw;
+    grid-template-areas: 
+    ". familyDetails ."
+    ". cards .";
+} */
+.cardContainer{
+    display: grid;
+    grid-template-rows:5vh auto ;
+    grid-template-columns: 20vw 70vw 10vw;
+    grid-template-areas: 
+    "name . ."
+    "personalPhoto titles deleteButton";
+    width: 100%;
+    height: fit-content;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 34px 1px gray;
+    -moz-box-shadow: 0px 0px 34px 1px gray;
+    box-shadow: 0px 0px 34px 1px gray;
+
+}
+.personalImg{
+    grid-area: personalPhoto;
+    border-radius: 20px;
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
+.taskTitles{
+    width: 100%;
+}
+.personalName{
+    grid-area: name;
+}
+
+.deleteTaskButton{
+    grid-area: deleteButton;
+}
+.tasks{
+    display: flex;
+    flex-direction: column;
+    grid-area: titles;
+}
