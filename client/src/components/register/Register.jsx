@@ -28,17 +28,19 @@ function Register() {
             })
     };
     return (
+        <div className="mainWrapper">
         <div className='boxContainer'>
             <h1 className='title'>Register</h1>
-            <form onSubmit={registerUser}>
-                <input type="text" name="email" placeholder="email"/><br></br>
-                <input type="text" name="firstName" placeholder="name"/><br></br>
-                <input type="text" name="lastName" placeholder="name"/><br></br>
-                <input type="text" name="picUrl" placeholder="pic Url"/><br></br>
-                <input type="text" name="password" placeholder="password"/><br></br>
-                <input type="submit"/>            
+            <form className="inputs" onSubmit={registerUser}>
+                <input type="text" name="email" placeholder="email" className="input"/><br></br>
+                <input type="text" name="firstName" placeholder="name" className="input"/><br></br>
+                <input type="text" name="lastName" placeholder="name" className="input"/><br></br>
+                <input type="text" name="picUrl" placeholder="pic Url" className="input"/><br></br>
+                <input type="text" name="password" placeholder="password" className="input"/><br></br>
+                <input type="submit" className="Button" />            
             </form>
-            <div id="response"></div>
+            <div id="response">jgigi</div>
+        </div>
         </div>
     )
 }
