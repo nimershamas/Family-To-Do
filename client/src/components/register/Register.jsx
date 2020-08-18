@@ -13,7 +13,7 @@ function Register() {
         let picUrl = e.target.picUrl.value;
         let password = e.target.password.value;
         
-        fetch('/api/addUser', {
+        fetch('/Register', {
             method: 'POST',
             body: JSON.stringify({ userEmail:email,firstName:firstName,
                 lastName:lastName,imgUrl:picUrl,password }),
@@ -39,10 +39,12 @@ function Register() {
                 <input type="text" name="lastName" placeholder="Last Name" className="input"/><br></br>
                 <input type="text" name="picUrl" placeholder="Personal img Url" className="input"/><br></br>
                 <input type="text" name="password" placeholder="password" className="input"/><br></br>
+                {message && <div className="response">{message}</div>}
                 <input type="submit" className="Button" />
+                
                 <p className="extraOption">Already have an account <Link to="/"> Sign In </Link></p>            
             </form>
-           {message && <div className="response">{message}</div>}
+           
         </div>
         </div>
     )
