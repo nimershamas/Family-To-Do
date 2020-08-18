@@ -70,29 +70,43 @@ app.post("/auth", async (req, res) => {
 
 app.post("/register", async (req, res) => {
     const {
-        email,
-        password,
+        userEmail,
+        firstName,
+        lastName,
+        imgUrl,
+        password
 
     } = req.body;
+    console.log(userEmail,
+        firstName,
+        lastName,
+        imgUrl,
+        password
+    );
 
-    const user = await User.find({
-        email
+    const user = await User.findOne({
+        userEmail
     })
 
+    // user exists (fail condition)
     if (user) return res.status(400).send({
-        isExists: true
+        successful: false
     });
 
     //create user object
-
+    const newObj = new User({
+        userEmail,
+        firstName,
+        lastName,
+        imgUrl,
+        password
+    })
     //save to db
+    await newObj.save();
 
-    // send the created object to the client
+    // send success 
     res.status(200).send({
-        _id: user._id,
-        userEmail: user.userEmail,
-        firstName: user.firstName,
-        lastName: user.lastName
+        successful: true
     })
 })
 
