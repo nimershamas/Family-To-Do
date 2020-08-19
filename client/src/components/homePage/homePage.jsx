@@ -1,24 +1,39 @@
-import React,{useState, useEffect} from "react";
-// import "/homePageStyle.css";
+import React, { useState, useEffect } from "react";
+import "./homePageStyle.css";
+import Card from "../cards/Card"
 
 
-const user= localStorage.getItem("user");
-const lastName=JSON.parse(user).lastName;
-console.log(lastName);
 
 function MainPage(props) {
-const [tasks,setTasks] =useState([]);
+    const [tasks, setTasks] = useState([]);
 
-useEffect(()=>{
-    fetch(`/api/getTasksByFamily/?lastName=${lastName}`)
-    .then (data=>data.json())
-    .then (data=>setTasks(data))
-},[])
+    useEffect(() => {
 
-console.log(tasks)
+        const user = localStorage.getItem("user");
+        const lastName = JSON.parse(user).lastName;
+        const id = JSON.parse(user).firstName;
+
+
+        fetch(`/api/getTasksByFamily/?lastName=${lastName}&_id=${id}`)
+            .then(data => data.json())
+            .then(data => setTasks(data))
+
+    }, [])
+
+
+    // console.log("aaa", tasks.tickets);
+    
     return (
-        <div>
-                <h1></h1>
+
+        <div className="mainPageWrapper">
+
+            <div className="cards">
+                {tasks && tasks.map((task, index) => {
+                    return <Card key={index} task={task} />
+                })}
+            </div>
+            
+            {tasks.length > 0 && <h1 className="familyName">Welcome To Your Tasks {tasks[0].tickets[0].user.lastName}'s</h1>}
 
 
         </div>

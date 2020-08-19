@@ -21,14 +21,18 @@ const [message,setMessage]=useState("");
         })
             .then((res) => res.json())
             .then(data=>{
+                // console.log('data:', data)
+             
                 if(data.message){
+                    console.log("fdsafsdfsd")
                     setMessage(data.message);
+                   return;
                 }
                 else {
-                    console.log(data)
-                    
                     localStorage.setItem("user",JSON.stringify(data));
+                    // window.location="/MainPage"
                 }
+              
             })
             
     }
@@ -43,7 +47,7 @@ const [message,setMessage]=useState("");
                             <input type="email" className="input"   name="email" placeholder="Email" />
 
                             <input type="Password" className="input"  name="password" placeholder="Password" />
-                           <Link to="/MainPage"><input type="submit" className="Button"  value="Log In" name="ok"></input></Link> 
+                           <input type="submit" className="Button"  value="Log In" name="ok"></input>
                         </form>
                         {message && <p className="response">{message}</p>}
                         <p className="extraOption">No Account? <Link to="/SignUp"> Sign up here</Link> </p>

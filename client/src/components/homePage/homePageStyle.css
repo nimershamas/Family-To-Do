@@ -1,0 +1,14 @@
+.mainPageWrapper{
+    display: grid;
+    grid-template-rows:20vh auto ;
+    grid-template-columns: 20vw 60vw 20vw;
+    grid-template-areas: 
+    ". familyDetails ."
+    ". cards .";
+} 
+.cards{
+    grid-area: cards;
+}
+.familyName{
+    grid-area: familyDetails;
+}

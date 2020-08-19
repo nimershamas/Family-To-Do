@@ -28,6 +28,7 @@ mongoose.connect(url, {
 });
 
 app.post("/auth", async (req, res) => {
+    console.log('auth')
     const {
         email,
         password
@@ -92,10 +93,11 @@ app.post("/register", async (req, res) => {
     });
 });
 
-app.post("/api/getTasksByFamily", async (req, res) => {
+app.get("/api/getTasksByFamily", async (req, res) => {
     const {
-        lastName
-    } = req.body;
+        lastName,
+    } = req.query;
+    console.log(lastName)
     const data = await Task.aggregate([{
             $match: {
                 "user.lastName": lastName,
@@ -103,19 +105,20 @@ app.post("/api/getTasksByFamily", async (req, res) => {
         },
         {
             $group: {
-                _id: lastName,
+                _id:'$user.firstName',
                 tickets: {
                     $push: {
                         user: "$user",
                         _id: "_id",
                         taskTitle: "$taskTitle",
                         taskContent: "$taskContent",
-                        daone: "$done",
+                        done: "$done",
                     },
                 },
             },
         },
     ]);
+    console.log(data)
     res.send(data);
 });
 
